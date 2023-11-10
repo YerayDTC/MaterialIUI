@@ -2,11 +2,12 @@ import React, { startTransition, useState } from "react";
 import "./LoginCard.css";
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, Icon, IconButton, InputAdornment, TextField, Typography, useScrollTrigger } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { Email, Lock, VisibilityOff } from "@mui/icons-material";
+import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 
 function LoginCard() {
 
     // const [email, setEmail] = useState("")
+    const [isVisible, setIsVisible] = useState(false)
 
   return (
     <>
@@ -16,7 +17,11 @@ function LoginCard() {
         <CardContent>
             <TextField
             // onChange={(e) => setEmail(e.target.value)}
-            variant="outlined" fullWidth={true} margin="dense" type="text" label="Email"
+            variant="outlined" 
+            fullWidth={true} 
+            margin="dense" 
+            type="text" 
+            label="Email"
             InputProps={{
                 startAdornment: (
                   <InputAdornment>
@@ -28,7 +33,11 @@ function LoginCard() {
               }}
             ></TextField>
             
-            <TextField variant="outlined" fullWidth={true} margin="dense" type="password" label="Paswoord" 
+            <TextField 
+            variant="outlined" 
+            fullWidth={true} margin="dense" 
+            type={isVisible ? "text":"password"} 
+            label="Paswoord" 
             InputProps={{
             startAdornment: (
               <InputAdornment>
@@ -39,8 +48,8 @@ function LoginCard() {
             ),
             endAdornment: (
               <InputAdornment>
-                <IconButton>
-                  <VisibilityOff />
+             <IconButton onClick={() => setIsVisible(!isVisible)}> {/* si se pulsa el icono del ojo se cambia la variable a visible */}
+                  {isVisible ? <Visibility/> : <VisibilityOff/>}
                 </IconButton>
               </InputAdornment>
             )
